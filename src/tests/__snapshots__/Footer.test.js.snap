@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component Renders correct static text and links 1`] = `
+<div>
+  <footer
+    class="footer"
+  >
+    <p>
+      By
+       
+      <a
+        class="author"
+        href="https://github.com/roesparc/"
+      >
+        roesparc
+      </a>
+    </p>
+    <a
+      href="https://github.com/roesparc/"
+    >
+      <i
+        class="fa-brands fa-github githubLogo"
+      />
+    </a>
+  </footer>
+</div>
+`;
