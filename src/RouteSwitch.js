@@ -1,18 +1,12 @@
 import { BrowserRouter } from "react-router-dom";
-import Footer from "./components/Footer";
+import Layout from "./components/Layout";
 
 const RouteSwitch = () => {
   return (
     <>
       <BrowserRouter>
-        <header>
-          <h1>Towel Worl</h1>
-        </header>
-
-        <main></main>
+        <Layout></Layout>
       </BrowserRouter>
-
-      <Footer />
     </>
   );
 };
