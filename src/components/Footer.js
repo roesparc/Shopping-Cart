@@ -1,4 +1,5 @@
 import styles from "../styles/Footer.module.css";
+import { BsGithub } from "react-icons/bs";
 
 const Footer = () => (
   <footer className={styles.footer}>
@@ -9,7 +10,7 @@ const Footer = () => (
       </a>
     </p>
     <a href="https://github.com/roesparc/">
-      <i className={`fa-brands fa-github ${styles.githubLogo}`}></i>
+      <BsGithub className={styles.githubLogo} />
     </a>
   </footer>
 );
