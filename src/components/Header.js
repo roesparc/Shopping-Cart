@@ -1,60 +1,77 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import styles from "../styles/Header.module.css";
 import { CartContext } from "../contexts/CartContext";
 import { RiShoppingCartFill } from "react-icons/ri";
+import styled from "styled-components";
 
 const Cart = () => {
   const { itemsQuantity, cartTotal, toggleCartOpen } = useContext(CartContext);
 
   return (
-    <button
-      aria-label="Cart button"
-      className={styles.cart}
-      onClick={toggleCartOpen}
-    >
+    <StyledCart aria-label="Cart button" onClick={toggleCartOpen}>
       <RiShoppingCartFill />
 
       {itemsQuantity > 0 && (
         <>
-          <span
+          <ItemsQuantity
             aria-label={`The cart has ${itemsQuantity} items`}
             role="status"
-            className={styles.itemsQuantity}
           >
             {itemsQuantity}
-          </span>
-          <span
+          </ItemsQuantity>
+          <CartTotal
             aria-label={`The total of your cart is $${cartTotal}`}
             role="status"
-            className={styles.cartTotal}
           >
             {cartTotal > 999 ? "$999+" : `$${cartTotal}`}
-          </span>
+          </CartTotal>
         </>
       )}
-    </button>
+    </StyledCart>
   );
 };
 
 const Header = () => (
-  <header className={styles.header}>
-    <Link className={styles.title} to="/">
+  <StyledHeader>
+    <Link to="/">
       <h1>Towel World</h1>
     </Link>
 
-    <nav className={styles.nav}>
-      <Link className={styles.home} to="/">
-        Home
-      </Link>
+    <Nav>
+      <Link to="/">Home</Link>
 
-      <Link className={styles.shop} to="/shop">
-        Shop
-      </Link>
+      <Link to="/shop">Shop</Link>
 
       <Cart />
-    </nav>
-  </header>
+    </Nav>
+  </StyledHeader>
 );
 
 export default Header;
+
+const StyledHeader = styled.header`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+`;
+
+const StyledCart = styled.button`
+  position: relative;
+`;
+
+const ItemsQuantity = styled.span`
+  position: absolute;
+  left: 1.5rem;
+`;
+
+const CartTotal = styled.span`
+  position: absolute;
+  left: 0;
+  top: 1.5rem;
+`;
