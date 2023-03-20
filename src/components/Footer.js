@@ -1,39 +1,21 @@
-import { FaGithub } from "react-icons/fa";
-import styled from "styled-components";
+import styles from "../styles/StyledFooter";
 
 const Footer = () => (
-  <StyledFooter>
+  <styles.StyledFooter>
     <p>
-      By <Author href="https://github.com/roesparc/">roesparc</Author>
+      By{" "}
+      <styles.Author
+        aria-label="Author's GitHub Page"
+        href="https://github.com/roesparc/"
+      >
+        roesparc
+      </styles.Author>
     </p>
-    <a href="https://github.com/roesparc/">
-      <GithubLogo />
+
+    <a aria-label="Author's GitHub Page" href="https://github.com/roesparc/">
+      <styles.GithubLogo />
     </a>
-  </StyledFooter>
+  </styles.StyledFooter>
 );
 
 export default Footer;
-
-const StyledFooter = styled.footer`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-`;
-
-const Author = styled.a`
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const GithubLogo = styled(FaGithub)`
-  transition: all 500ms ease;
-  display: block;
-
-  &:hover {
-    transform: rotate(360deg) scale(1.2);
-  }
-`;
