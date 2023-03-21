@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useCallback } from "react";
 
 const CartContext = createContext();
 
@@ -21,39 +21,37 @@ const CartProvider = ({ children }) => {
     );
   }, [cartItems]);
 
-  const updateCart = (item, action) => {
+  const updateCart = useCallback((item, action) => {
     setCartItems((prev) => {
-      const itemIndex = prev.findIndex((cartItem) => cartItem.id === item.id);
       const updatedCartItems = [...prev];
+      const itemIndex = updatedCartItems.findIndex(
+        (cartItem) => cartItem.id === item.id
+      );
 
-      switch (action) {
-        case "add":
-          item.cartQuantity = 1;
-          updatedCartItems.push(item);
-          break;
+      if (action === "add") {
+        updatedCartItems.push({ ...item, cartQuantity: 1 });
+      } else {
+        const newQuantity =
+          updatedCartItems[itemIndex].cartQuantity +
+          (action === "increase" ? 1 : -1);
 
-        case "increase":
-          updatedCartItems[itemIndex].cartQuantity += 1;
-          break;
-
-        case "decrease":
-          updatedCartItems[itemIndex].cartQuantity -= 1;
-          if (updatedCartItems[itemIndex].cartQuantity <= 0) {
-            updatedCartItems.splice(itemIndex, 1);
-          }
-          break;
-
-        default:
-          break;
+        if (newQuantity > 0) {
+          updatedCartItems.splice(itemIndex, 1, {
+            ...item,
+            cartQuantity: newQuantity,
+          });
+        } else {
+          updatedCartItems.splice(itemIndex, 1);
+        }
       }
 
       return updatedCartItems;
     });
-  };
+  }, []);
 
-  const toggleCartOpen = () => {
+  const toggleCartOpen = useCallback(() => {
     setCartOpen((prev) => !prev);
-  };
+  }, []);
 
   const value = {
     cartItems,

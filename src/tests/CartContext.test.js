@@ -82,8 +82,9 @@ describe("CartContext", () => {
       act(() => userClick(addToCartBtn));
 
       expect(cartItemsCopy).toHaveLength(1);
-      expect(cartItemsCopy).toContainEqual(item);
-      expect(cartItemsCopy[0]).toHaveProperty("cartQuantity", 1);
+      expect(cartItemsCopy).toEqual([
+        { id: 1, name: "item 1", price: 10, cartQuantity: 1 },
+      ]);
       expect(itemsQuantityCopy).toBe(1);
       expect(cartTotalCopy).toBe(10);
     });
@@ -122,8 +123,9 @@ describe("CartContext", () => {
       act(() => userClick(increaseQuantityBtn));
 
       expect(cartItemsCopy).toHaveLength(1);
-      expect(cartItemsCopy).toContainEqual(item);
-      expect(cartItemsCopy[0]).toHaveProperty("cartQuantity", 3);
+      expect(cartItemsCopy).toEqual([
+        { id: 1, name: "item 1", price: 10, cartQuantity: 3 },
+      ]);
       expect(itemsQuantityCopy).toBe(3);
       expect(cartTotalCopy).toBe(30);
     });
@@ -144,8 +146,9 @@ describe("CartContext", () => {
       act(() => userClick(decreaseQuantityBtn));
 
       expect(cartItemsCopy).toHaveLength(1);
-      expect(cartItemsCopy).toContainEqual(item);
-      expect(cartItemsCopy[0]).toHaveProperty("cartQuantity", 1);
+      expect(cartItemsCopy).toEqual([
+        { id: 1, name: "item 1", price: 10, cartQuantity: 1 },
+      ]);
       expect(itemsQuantityCopy).toBe(1);
       expect(cartTotalCopy).toBe(10);
 
