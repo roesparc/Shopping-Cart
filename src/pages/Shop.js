@@ -1,22 +1,6 @@
-import { useContext } from "react";
 import products from "../assets/productsData";
-import CartButtonsContainer from "../components/shared/CartButtonsContainer";
-import { CartContext } from "../contexts/CartContext";
+import CartButtons from "../components/shared/CartButtons";
 import styles from "../styles/StyledShop";
-
-const CartButtons = ({ product }) => {
-  const { cartItems, updateCart } = useContext(CartContext);
-
-  return (
-    <>
-      {cartItems.some((item) => item.id === product.id) ? (
-        <CartButtonsContainer product={product} cartItems={cartItems} />
-      ) : (
-        <button onClick={() => updateCart(product, "add")}>Add to cart</button>
-      )}
-    </>
-  );
-};
 
 const Shop = () => (
   <styles.StyledShop aria-label="Product list">
