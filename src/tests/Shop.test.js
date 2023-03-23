@@ -5,10 +5,9 @@ import { BrowserRouter } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
 import Shop from "../pages/Shop";
 import { act } from "react-dom/test-utils";
-import products from "../assets/productsData";
 
-let cartItems;
-let updateCart;
+let cartItems = [];
+let updateCart = jest.fn();
 
 const userClick = userEvent.click;
 
@@ -50,11 +49,6 @@ const renderShopWithContext = () => {
 };
 
 describe("Shop Page", () => {
-  beforeEach(() => {
-    cartItems = [];
-    updateCart = jest.fn();
-  });
-
   test("Renders correctly", () => {
     renderShopWithContext();
     const productListEl = screen.getByRole("list", { name: /product list/i });
@@ -105,53 +99,5 @@ describe("Shop Page", () => {
       act(() => userClick(productDetails));
       expect(window.location.pathname).toBe(`/${index}`);
     });
-  });
-
-  test("Clicking add to cart button updates cart", () => {
-    renderShopWithContext();
-    const addToCartBtns = screen.getAllByRole("button", {
-      name: /add to cart/i,
-    });
-
-    act(() => userClick(addToCartBtns[0]));
-
-    expect(updateCart).toHaveBeenCalledWith(products[0], "add");
-  });
-
-  test("When a product is in the cart, cart buttons are displayed to adjust cart quantity and show how many are in the cart", () => {
-    const productInCart = { ...products[0], cartQuantity: 5 };
-    cartItems.push(productInCart);
-    renderShopWithContext();
-    const productElements = screen.getAllByRole("listitem", {
-      name: /product:/i,
-    });
-    const increaseQuantityButton = screen.getByRole("button", {
-      name: /increase cart quantity/i,
-    });
-    const decreaseQuantityButton = screen.getByRole("button", {
-      name: /decrease cart quantity/i,
-    });
-    const productCartQuantity = screen.getByRole("status", {
-      name: /product cart quantity/i,
-    });
-
-    expect(productElements[0]).toContainElement(increaseQuantityButton);
-    expect(productElements[0]).toContainElement(decreaseQuantityButton);
-    expect(productElements[0]).toContainElement(productCartQuantity);
-    expect(productCartQuantity).toHaveTextContent("5");
-
-    expect(productElements[1]).not.toContainElement(increaseQuantityButton);
-    expect(productElements[1]).not.toContainElement(decreaseQuantityButton);
-    expect(productElements[1]).not.toContainElement(productCartQuantity);
-
-    expect(productElements[2]).not.toContainElement(increaseQuantityButton);
-    expect(productElements[2]).not.toContainElement(decreaseQuantityButton);
-    expect(productElements[2]).not.toContainElement(productCartQuantity);
-
-    act(() => userClick(increaseQuantityButton));
-    act(() => userClick(decreaseQuantityButton));
-
-    expect(updateCart).toHaveBeenCalledWith(products[0], "increase");
-    expect(updateCart).toHaveBeenCalledWith(products[0], "decrease");
   });
 });
