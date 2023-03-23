@@ -8,18 +8,24 @@ const CartButtonsContainer = ({ product, cartItems }) => {
   const { updateCart } = useContext(CartContext);
 
   return (
-    <styles.StyledCartButtonsContainer>
-      <button onClick={() => updateCart(product, "decrease")}>
+    <styles.StyledCartButtonsContainer data-testid="cart-buttons-container">
+      <button
+        aria-label="Decrease cart quantity"
+        onClick={() => updateCart(product, "decrease")}
+      >
         <FaMinus />
       </button>
 
-      <styles.ProductQuantity>
+      <styles.ProductQuantity aria-label="Product cart quantity" role="status">
         {cartItems
           ? cartItems.find((item) => item.id === product.id).cartQuantity
           : product.cartQuantity}
       </styles.ProductQuantity>
 
-      <button onClick={() => updateCart(product, "increase")}>
+      <button
+        aria-label="Increase cart quantity"
+        onClick={() => updateCart(product, "increase")}
+      >
         <FaPlus />
       </button>
     </styles.StyledCartButtonsContainer>
