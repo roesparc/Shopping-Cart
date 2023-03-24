@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledCartButtonsContainer = styled.div`
+const StyledCartButtons = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,6 +12,6 @@ const ProductQuantity = styled.p`
   border: 1px solid grey;
 `;
 
-const styles = { StyledCartButtonsContainer, ProductQuantity };
+const styles = { StyledCartButtons, ProductQuantity };
 
 export default styles;
