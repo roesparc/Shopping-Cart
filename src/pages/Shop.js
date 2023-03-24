@@ -11,11 +11,7 @@ const Shop = () => (
       >
         <styles.ProductLink aria-label="View product" to={`${product.id}`}>
           <styles.ProductImageContainer>
-            <styles.ProductImage
-              aria-label="Product image"
-              src={product.image}
-              alt={product.name}
-            />
+            <styles.ProductImage src={product.image} alt="Product image" />
           </styles.ProductImageContainer>
 
           <styles.ProductDetails aria-label="Product details" role="region">

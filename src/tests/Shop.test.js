@@ -95,7 +95,6 @@ describe("Shop Page", () => {
         expect(product).toContainElement(productImage);
         expect(product).toContainElement(productDetails);
         expect(productImage).toHaveAttribute("src", productData.image);
-        expect(productImage).toHaveAttribute("alt", productData.name);
         expect(productDetails).toHaveTextContent(
           `${productData.name}${productData.color}$${productData.price}`
         );
