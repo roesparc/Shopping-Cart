@@ -20,10 +20,10 @@ const Cart = () => {
             {itemsQuantity}
           </styles.ItemsQuantity>
           <styles.CartTotal
-            aria-label={`The total of your cart is $${cartTotal}`}
+            aria-label={`The total of your cart is $${cartTotal.toFixed(2)}`}
             role="status"
           >
-            {cartTotal > 999 ? "$999+" : `$${cartTotal}`}
+            {cartTotal > 999 ? "$999+" : `$${cartTotal.toFixed(2)}`}
           </styles.CartTotal>
         </>
       )}
