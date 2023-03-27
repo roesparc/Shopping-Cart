@@ -38,7 +38,7 @@ const Header = () => (
       <styles.NameLogo>Towel World</styles.NameLogo>
     </StyledLink>
 
-    <nav>
+    <styles.HeaderNav>
       <StyledLink to="/" $hover>
         Home
       </StyledLink>
@@ -48,7 +48,7 @@ const Header = () => (
       </StyledLink>
 
       <Cart />
-    </nav>
+    </styles.HeaderNav>
   </styles.StyledHeader>
 );
 

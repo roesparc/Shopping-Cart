@@ -10,12 +10,12 @@ const StyledHeader = styled.header`
   top: 0;
   background-color: ${({ theme }) => theme.colors.white};
   z-index: 1;
+`;
 
-  > nav {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-  }
+const HeaderNav = styled.nav`
+  display: flex;
+  align-items: center;
+  gap: 3rem;
 `;
 
 const NameLogo = styled.h1`
@@ -43,6 +43,6 @@ const CartTotal = styled.span`
   font-size: 1rem;
 `;
 
-const styles = { StyledHeader, NameLogo, ItemsQuantity, CartTotal };
+const styles = { StyledHeader, HeaderNav, NameLogo, ItemsQuantity, CartTotal };
 
 export default styles;
