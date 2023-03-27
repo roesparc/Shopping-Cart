@@ -3,7 +3,7 @@ import StyledLink from "../styles/Elements/StyledLink";
 import styles from "../styles/StyledHome";
 
 const Home = () => (
-  <styles.StyledHome>
+  <styles.StyledHome data-testid="home">
     <div>
       <styles.Title as="h3">Wrap yourself in luxury</styles.Title>
       <styles.Title>The perfect towel for every occasion</styles.Title>
