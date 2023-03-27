@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.js": "/Shopping-Cart/static/js/main.3c0b24d1.js",
+    "static/media/home_bg.jpg": "/Shopping-Cart/static/media/home_bg.5a4a2c4b4f66765d5e18.jpg",
+    "static/media/2pack_yellow.jpg": "/Shopping-Cart/static/media/2pack_yellow.f721ce41bcea402c92b0.jpg",
+    "static/media/2pack_pink.jpg": "/Shopping-Cart/static/media/2pack_pink.676d77676d46f887198f.jpg",
+    "static/media/2pack_blue.jpg": "/Shopping-Cart/static/media/2pack_blue.342a7cf2ee1f34f0d76d.jpg",
+    "static/media/2pack_grey.jpg": "/Shopping-Cart/static/media/2pack_grey.b9bad7e4105f22bbf504.jpg",
+    "static/media/2pack_beige.jpg": "/Shopping-Cart/static/media/2pack_beige.bbae3dd9bd250fecefd9.jpg",
+    "static/media/3pack_brown.jpg": "/Shopping-Cart/static/media/3pack_brown.4143854e27672eddf8e8.jpg",
+    "static/media/3pack_pink.jpg": "/Shopping-Cart/static/media/3pack_pink.9c37f097c282f33b2c8d.jpg",
+    "static/media/3pack_blue.jpg": "/Shopping-Cart/static/media/3pack_blue.c7b1e772f6a5cf99256a.jpg",
+    "static/media/3pack_black.jpg": "/Shopping-Cart/static/media/3pack_black.6a6a52095c1f8bbc587b.jpg",
+    "static/media/3pack_violet.jpg": "/Shopping-Cart/static/media/3pack_violet.41fb91733c03b009cbd1.jpg",
+    "static/media/3pack_white.jpg": "/Shopping-Cart/static/media/3pack_white.75a0ed61e38def132338.jpg",
+    "static/media/2pack_white.jpg": "/Shopping-Cart/static/media/2pack_white.8665b24ba94b170e1964.jpg",
+    "index.html": "/Shopping-Cart/index.html",
+    "main.3c0b24d1.js.map": "/Shopping-Cart/static/js/main.3c0b24d1.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.3c0b24d1.js"
+  ]
+}
