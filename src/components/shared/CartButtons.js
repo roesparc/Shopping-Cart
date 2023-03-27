@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import styles from "../../styles/StyledCartButtons";
 import { FaMinus, FaPlus } from "react-icons/fa";
+import StyledButton from "../../styles/Elements/StyledButton";
 
 const CartButtons = ({ product }) => {
   const { cartItems, updateCart } = useContext(CartContext);
@@ -19,12 +20,13 @@ const CartButtons = ({ product }) => {
     <styles.StyledCartButtons data-testid="cart-buttons-container">
       {productCartQuantity > 0 ? (
         <>
-          <button
+          <StyledButton
             aria-label="Decrease cart quantity"
             onClick={() => updateCart(product, "decrease")}
+            $cartBtn
           >
             <FaMinus />
-          </button>
+          </StyledButton>
 
           <styles.ProductQuantity
             aria-label="Product cart quantity"
@@ -33,15 +35,18 @@ const CartButtons = ({ product }) => {
             {productCartQuantity}
           </styles.ProductQuantity>
 
-          <button
+          <StyledButton
             aria-label="Increase cart quantity"
             onClick={() => updateCart(product, "increase")}
+            $cartBtn
           >
             <FaPlus />
-          </button>
+          </StyledButton>
         </>
       ) : (
-        <button onClick={() => updateCart(product, "add")}>Add to cart</button>
+        <StyledButton onClick={() => updateCart(product, "add")} $cartBtn>
+          Add to cart
+        </StyledButton>
       )}
     </styles.StyledCartButtons>
   );
