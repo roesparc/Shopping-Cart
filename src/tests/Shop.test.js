@@ -6,6 +6,9 @@ import { CartContext } from "../contexts/CartContext";
 import Shop from "../pages/Shop";
 import { act } from "react-dom/test-utils";
 import products from "../assets/productsData";
+import { ThemeProvider } from "styled-components";
+import theme from "../styles/Theme";
+import "jest-styled-components";
 
 let cartItems = [];
 let updateCart = jest.fn();
@@ -41,11 +44,13 @@ jest.mock("../assets/productsData", () => [
 
 const renderShopWithContext = () => {
   render(
-    <BrowserRouter>
-      <CartContext.Provider value={{ cartItems, updateCart }}>
-        <Shop />
-      </CartContext.Provider>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <CartContext.Provider value={{ cartItems, updateCart }}>
+          <Shop />
+        </CartContext.Provider>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 
@@ -120,5 +125,16 @@ describe("Shop Page", () => {
         act(() => userClick(productDetails));
         expect(window.location.pathname).toBe(`/${index}`);
       });
+  });
+
+  test("Layout renders correctly", () => {
+    renderShopWithContext();
+    const shop = screen.getByRole("list");
+
+    expect(shop).toHaveStyleRule("display", "flex");
+    expect(shop).toHaveStyleRule("flex-wrap", "wrap");
+    expect(shop).toHaveStyleRule("justify-content", "center");
+    expect(shop).toHaveStyleRule("gap", "3rem");
+    expect(shop).toHaveStyleRule("max-width", "90rem");
   });
 });

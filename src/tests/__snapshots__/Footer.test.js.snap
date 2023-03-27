@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Footer component Renders correct static text and links 1`] = `
+exports[`Footer component Renders correct content and styles 1`] = `
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -15,6 +15,13 @@ exports[`Footer component Renders correct static text and links 1`] = `
   -ms-flex-align: center;
   align-items: center;
   gap: 0.5rem;
+  padding: 1rem;
+  background-color: #212a2f;
+}
+
+.c0 p,
+.c0 a {
+  color: #ffffff;
 }
 
 .c1 {

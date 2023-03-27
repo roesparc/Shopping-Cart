@@ -5,6 +5,9 @@ import ShoppingCart from "../components/ShoppingCart";
 import { CartContext } from "../contexts/CartContext";
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
+import { ThemeProvider } from "styled-components";
+import theme from "../styles/Theme";
+import "jest-styled-components";
 
 let cartItems;
 let cartOpen;
@@ -42,13 +45,15 @@ const cartItemsArray = [
 
 const renderShoppingCartWithContext = () => {
   render(
-    <BrowserRouter>
-      <CartContext.Provider
-        value={{ cartItems, cartOpen, cartTotal, toggleCartOpen }}
-      >
-        <ShoppingCart />
-      </CartContext.Provider>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <CartContext.Provider
+          value={{ cartItems, cartOpen, cartTotal, toggleCartOpen }}
+        >
+          <ShoppingCart />
+        </CartContext.Provider>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 
@@ -195,5 +200,23 @@ describe("ShoppingCart component", () => {
         act(() => userClick(productColor));
         expect(window.location.pathname).toBe(`/shop/${index}`);
       });
+  });
+
+  test("Layout renders correctly", () => {
+    renderShoppingCartWithContext();
+    const shoppingCart = screen.getByTestId("shopping-cart");
+    const overlay = screen.getByTestId("shopping-cart-overlay");
+
+    expect(shoppingCart).toHaveStyleRule("display", "flex");
+    expect(shoppingCart).toHaveStyleRule("flex-direction", "column");
+    expect(shoppingCart).toHaveStyleRule("gap", "2rem");
+    expect(shoppingCart).toHaveStyleRule("width", "42rem");
+    expect(shoppingCart).toHaveStyleRule("height", "100%");
+    expect(shoppingCart).toHaveStyleRule("position", "fixed");
+    expect(shoppingCart).toHaveStyleRule("right", "0");
+
+    expect(overlay).toHaveStyleRule("position", "fixed");
+    expect(overlay).toHaveStyleRule("height", "100%");
+    expect(overlay).toHaveStyleRule("width", "100%");
   });
 });

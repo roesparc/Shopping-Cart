@@ -4,14 +4,19 @@ import { BrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
+import { ThemeProvider } from "styled-components";
+import theme from "../styles/Theme";
+import "jest-styled-components";
 
 const userClick = userEvent.click;
 
 const renderHome = () => {
   render(
-    <BrowserRouter>
-      <Home />
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Home />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 
@@ -44,5 +49,16 @@ describe("Home Page", () => {
     act(() => userClick(browseBtn));
 
     expect(window.location.pathname).toEqual("/shop");
+  });
+
+  test("Layout renders correctly", () => {
+    renderHome();
+    const home = screen.getByTestId("home");
+
+    expect(home).toHaveStyleRule("display", "flex");
+    expect(home).toHaveStyleRule("flex-direction", "column");
+    expect(home).toHaveStyleRule("justify-content", "center");
+    expect(home).toHaveStyleRule("align-items", "center");
+    expect(home).toHaveStyleRule("flex-grow", "1");
   });
 });

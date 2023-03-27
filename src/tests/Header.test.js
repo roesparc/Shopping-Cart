@@ -5,6 +5,9 @@ import Header from "../components/Header";
 import { CartContext } from "../contexts/CartContext";
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
+import { ThemeProvider } from "styled-components";
+import theme from "../styles/Theme";
+import "jest-styled-components";
 
 let itemsQuantity;
 let cartTotal;
@@ -14,13 +17,15 @@ const userClick = userEvent.click;
 
 const renderHeaderWithContext = () => {
   render(
-    <BrowserRouter>
-      <CartContext.Provider
-        value={{ itemsQuantity, cartTotal, toggleCartOpen }}
-      >
-        <Header />
-      </CartContext.Provider>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <CartContext.Provider
+          value={{ itemsQuantity, cartTotal, toggleCartOpen }}
+        >
+          <Header />
+        </CartContext.Provider>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 
@@ -113,5 +118,21 @@ describe("Header component", () => {
     });
 
     expect(cartTotalEl).toHaveTextContent("$999+");
+  });
+
+  test("Layout renders correctly", () => {
+    renderHeaderWithContext();
+    const header = screen.getByRole("banner");
+    const nav = screen.getByRole("navigation");
+
+    expect(header).toHaveStyleRule("display", "flex");
+    expect(header).toHaveStyleRule("justify-content", "space-around");
+    expect(header).toHaveStyleRule("align-items", "center");
+    expect(header).toHaveStyleRule("position", "sticky");
+    expect(header).toHaveStyleRule("top", "0");
+
+    expect(nav).toHaveStyleRule("display", "flex");
+    expect(nav).toHaveStyleRule("align-items", "center");
+    expect(nav).toHaveStyleRule("gap", "3rem");
   });
 });

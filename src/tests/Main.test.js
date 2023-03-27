@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router-dom";
 import Main from "../components/Main";
+import "jest-styled-components";
 
 let currentPage;
 
@@ -56,5 +57,14 @@ describe("Main component", () => {
     });
 
     expect(productDetailsHeader).toBeInTheDocument();
+  });
+
+  test("Layout renders correctly", () => {
+    renderMain();
+    const main = screen.getByRole("main");
+
+    expect(main).toHaveStyleRule("flex-grow", "1");
+    expect(main).toHaveStyleRule("display", "flex");
+    expect(main).toHaveStyleRule("flex-direction", "column");
   });
 });

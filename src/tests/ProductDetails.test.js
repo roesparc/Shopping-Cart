@@ -6,6 +6,9 @@ import { CartContext } from "../contexts/CartContext";
 import ProductDetails from "../pages/ProductDetails";
 import products from "../assets/productsData";
 import { act } from "react-dom/test-utils";
+import { ThemeProvider } from "styled-components";
+import theme from "../styles/Theme";
+import "jest-styled-components";
 
 let cartItems = [];
 let updateCart = jest.fn();
@@ -30,11 +33,13 @@ jest.mock("../assets/productsData", () => [
 
 const renderProductDetailsWithContext = () => {
   render(
-    <BrowserRouter>
-      <CartContext.Provider value={{ cartItems, updateCart }}>
-        <ProductDetails />
-      </CartContext.Provider>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <CartContext.Provider value={{ cartItems, updateCart }}>
+          <ProductDetails />
+        </CartContext.Provider>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 
@@ -62,7 +67,7 @@ describe("ProductDetails page", () => {
       name: /product details/i,
     });
     const productTitle = screen.getByRole("heading", {
-      name: `${product.name} - ${product.color}`,
+      name: `${product.name} ${product.color}`,
     });
     const description = within(productDetails).getByText(
       `${product.description}`
@@ -82,5 +87,21 @@ describe("ProductDetails page", () => {
     act(() => userClick(backBtn));
 
     expect(window.location.pathname).toBe("/shop");
+  });
+
+  test("Layout renders correctly", () => {
+    renderProductDetailsWithContext();
+    const productDetailsContainer = screen.getByTestId(
+      "product-details-container"
+    );
+
+    expect(productDetailsContainer).toHaveStyleRule("display", "grid");
+    expect(productDetailsContainer).toHaveStyleRule(
+      "grid-template-columns",
+      "repeat(2,auto)"
+    );
+    expect(productDetailsContainer).toHaveStyleRule("align-items", "center");
+    expect(productDetailsContainer).toHaveStyleRule("gap", "3rem");
+    expect(productDetailsContainer).toHaveStyleRule("max-width", "90rem");
   });
 });
