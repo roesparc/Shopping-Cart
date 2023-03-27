@@ -1,4 +1,4 @@
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Main from "./components/Main";
@@ -8,7 +8,7 @@ import StyledRouteSwitch from "./styles/StyledRouteSwitch";
 
 const RouteSwitch = () => (
   <StyledRouteSwitch>
-    <BrowserRouter>
+    <HashRouter>
       <CartProvider>
         <Header />
         <Main />
@@ -16,7 +16,7 @@ const RouteSwitch = () => (
       </CartProvider>
 
       <Footer />
-    </BrowserRouter>
+    </HashRouter>
   </StyledRouteSwitch>
 );
 
