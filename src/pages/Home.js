@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import StyledButton from "../styles/Elements/StyledButton";
+import StyledLink from "../styles/Elements/StyledLink";
 import styles from "../styles/StyledHome";
 
 const Home = () => (
@@ -8,9 +9,9 @@ const Home = () => (
       <styles.Title>The perfect towel for every occasion</styles.Title>
     </div>
 
-    <Link to="/shop">
-      <button>Browse our collection</button>
-    </Link>
+    <StyledLink to="/shop">
+      <StyledButton $homeBtn>Browse our collection</StyledButton>
+    </StyledLink>
   </styles.StyledHome>
 );
 

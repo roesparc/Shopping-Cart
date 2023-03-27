@@ -1,5 +1,6 @@
 import products from "../assets/productsData";
 import CartButtons from "../components/shared/CartButtons";
+import StyledLink from "../styles/Elements/StyledLink";
 import styles from "../styles/StyledShop";
 
 const Shop = () => (
@@ -9,7 +10,7 @@ const Shop = () => (
         aria-label={`Product: ${product.name} - ${product.color}`}
         key={product.id}
       >
-        <styles.ProductLink aria-label="View product" to={`${product.id}`}>
+        <StyledLink aria-label="View product" to={`${product.id}`}>
           <styles.ProductImageContainer>
             <styles.ProductImage src={product.image} alt="Product image" />
           </styles.ProductImageContainer>
@@ -22,7 +23,7 @@ const Shop = () => (
 
             <p aria-label="Price">${product.price}</p>
           </styles.ProductDetails>
-        </styles.ProductLink>
+        </StyledLink>
 
         <CartButtons product={product} />
       </styles.Product>

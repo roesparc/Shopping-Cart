@@ -3,6 +3,8 @@ import { CartContext } from "../contexts/CartContext";
 import CartButtons from "./shared/CartButtons";
 import { AiOutlineClose } from "react-icons/ai";
 import styles from "../styles/StyledShoppingCart";
+import StyledLink from "../styles/Elements/StyledLink";
+import StyledButton from "../styles/Elements/StyledButton";
 
 const CartProducts = () => {
   const { cartItems, toggleCartOpen } = useContext(CartContext);
@@ -16,14 +18,14 @@ const CartProducts = () => {
           aria-label={`Product: ${item.name} - ${item.color}`}
           key={item.id}
         >
-          <styles.productLink onClick={toggleCartOpen} to={`/shop/${item.id}`}>
+          <StyledLink onClick={toggleCartOpen} to={`/shop/${item.id}`} $cart>
             <styles.ProductImage src={item.image} alt="Product" />
 
             <div>
               <p>{item.name}</p>
               <p>{item.color}</p>
             </div>
-          </styles.productLink>
+          </StyledLink>
 
           <styles.PriceAndQuantity>
             <p>${(item.price * item.cartQuantity).toFixed(2)}</p>
@@ -51,9 +53,13 @@ const ShoppingCart = () => {
         data-testid="shopping-cart"
         style={{ transform: `translateX(${cartOpen ? "0" : "100%"})` }}
       >
-        <button aria-label="Close cart" onClick={toggleCartOpen}>
+        <StyledButton
+          aria-label="Close cart"
+          onClick={toggleCartOpen}
+          $closeCartBtn
+        >
           <AiOutlineClose />
-        </button>
+        </StyledButton>
 
         <h2>{cartItems.length > 0 ? "My Cart" : "Your Cart is Empty"}</h2>
 
@@ -63,9 +69,12 @@ const ShoppingCart = () => {
 
             <h3>Subtotal: ${cartTotal.toFixed(2)}</h3>
 
-            <button onClick={() => window.alert("Bamboozled!")}>
+            <StyledButton
+              onClick={() => window.alert("Bamboozled!")}
+              $highlight
+            >
               Checkout
-            </button>
+            </StyledButton>
           </>
         )}
       </styles.StyledShoppingCart>

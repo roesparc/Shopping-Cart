@@ -1,14 +1,15 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
 import { RiShoppingCartFill } from "react-icons/ri";
 import styles from "../styles/StyledHeader";
+import StyledLink from "../styles/Elements/StyledLink";
+import StyledButton from "../styles/Elements/StyledButton";
 
 const Cart = () => {
   const { itemsQuantity, cartTotal, toggleCartOpen } = useContext(CartContext);
 
   return (
-    <styles.StyledCart aria-label="Cart button" onClick={toggleCartOpen}>
+    <StyledButton aria-label="Cart button" onClick={toggleCartOpen} $biggerFont>
       <RiShoppingCartFill />
 
       {itemsQuantity > 0 && (
@@ -27,20 +28,24 @@ const Cart = () => {
           </styles.CartTotal>
         </>
       )}
-    </styles.StyledCart>
+    </StyledButton>
   );
 };
 
 const Header = () => (
   <styles.StyledHeader>
-    <Link to="/">
-      <h1>Towel World</h1>
-    </Link>
+    <StyledLink to="/">
+      <styles.NameLogo>Towel World</styles.NameLogo>
+    </StyledLink>
 
     <nav>
-      <Link to="/">Home</Link>
+      <StyledLink to="/" $hover>
+        Home
+      </StyledLink>
 
-      <Link to="/shop">Shop</Link>
+      <StyledLink to="/shop" $hover>
+        Shop
+      </StyledLink>
 
       <Cart />
     </nav>
