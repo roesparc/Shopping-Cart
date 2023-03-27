@@ -4,12 +4,15 @@ const StyledCartButtons = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid ${({ theme }) => theme.colors.main};
+  border-radius: 0.5rem;
+  overflow: hidden;
 `;
 
 const ProductQuantity = styled.p`
   width: 3rem;
   text-align: center;
-  border: 1px solid grey;
+  font-weight: bold;
 `;
 
 const styles = { StyledCartButtons, ProductQuantity };

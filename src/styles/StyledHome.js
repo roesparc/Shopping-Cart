@@ -9,22 +9,24 @@ const StyledHome = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  > a {
-    margin-top: 2rem;
-  }
+  animation: reveal 1s ease;
 `;
 
 const Title = styled.h2`
-  width: fit-content;
-  color: white;
+  color: ${({ theme }) => theme.colors.white};
   font-weight: normal;
   font-size: ${({ as }) => (as === "h3" ? "2rem" : "4rem")};
 
-  background-color: #00000033;
-  padding: 0.5rem;
-  border-radius: ${({ as }) =>
-    as === "h3" ? "0.5rem 0.5rem 0 0" : "0 0.5rem 0.5rem 0.5rem"};
+  ${({ as, theme }) =>
+    as === "h3" &&
+    `
+    color: ${theme.colors.main};
+    text-shadow: 1px 1px 2px ${theme.colors.white};
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1rem;
+    margin-bottom: -1rem;
+  `}
 `;
 
 const styles = { StyledHome, Title };

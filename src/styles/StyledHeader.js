@@ -4,6 +4,12 @@ const StyledHeader = styled.header`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding: 1rem;
+  box-shadow: ${({ theme }) => theme.shadows.headerShadow};
+  position: sticky;
+  top: 0;
+  background-color: ${({ theme }) => theme.colors.white};
+  z-index: 1;
 
   > nav {
     display: flex;
@@ -12,25 +18,31 @@ const StyledHeader = styled.header`
   }
 `;
 
-const StyledCart = styled.button`
-  position: relative;
-
-  > svg {
-    display: block;
-  }
+const NameLogo = styled.h1`
+  font-family: ${({ theme }) => theme.fonts.logo};
+  text-shadow: ${({ theme }) => theme.shadows.logoShadow};
 `;
 
 const ItemsQuantity = styled.span`
   position: absolute;
-  left: 1.5rem;
+  left: -1rem;
+  top: 2.2rem;
+  font-size: 1rem;
+  background-color: ${({ theme }) => theme.colors.mainTwo};
+  color: ${({ theme }) => theme.colors.white};
+  border-radius: 50%;
+  width: 1.8rem;
+  height: 1.8rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const CartTotal = styled.span`
-  position: absolute;
-  left: 0;
-  top: 1.5rem;
+  font-size: 1rem;
 `;
 
-const styles = { StyledHeader, StyledCart, ItemsQuantity, CartTotal };
+const styles = { StyledHeader, NameLogo, ItemsQuantity, CartTotal };
 
 export default styles;

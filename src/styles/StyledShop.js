@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledShop = styled.ul`
@@ -9,6 +8,7 @@ const StyledShop = styled.ul`
   flex-wrap: wrap;
   justify-content: center;
   gap: 3rem;
+  animation: reveal 1s ease;
 `;
 
 const Product = styled.li`
@@ -17,15 +17,9 @@ const Product = styled.li`
   justify-content: center;
   align-items: center;
   gap: 1rem;
-
-  border: 1px solid;
+  box-shadow: ${({ theme }) => theme.shadows.mainBoxShadow};
   border-radius: 0.5rem;
   padding: 1rem;
-`;
-
-const ProductLink = styled(Link)`
-  text-decoration: none;
-  color: black;
 `;
 
 const ProductImageContainer = styled.div`
@@ -48,12 +42,20 @@ const ProductDetails = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1rem;
+
+  div p:first-child {
+    font-weight: bold;
+  }
+
+  div p:last-child {
+    color: #c75959;
+  }
 `;
 
 const styles = {
   StyledShop,
   Product,
-  ProductLink,
   ProductImageContainer,
   ProductImage,
   ProductDetails,

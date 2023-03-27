@@ -6,6 +6,13 @@ const StyledFooter = styled.footer`
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  padding: 1rem;
+  background-color: ${({ theme }) => theme.colors.main};
+
+  p,
+  a {
+    color: ${({ theme }) => theme.colors.white};
+  }
 `;
 
 const Author = styled.a`
