@@ -6,7 +6,7 @@
 
 ## React: Testing and Routing
 
-The main goal of this project is to implement Jest DOM with User Event to test React components and React Router for client-side routing.
+The main goal of this project is to implement Jest DOM with User Event to test React components and accessibility for screen readers, and React Router for client-side routing.
 
 ### Features
 
